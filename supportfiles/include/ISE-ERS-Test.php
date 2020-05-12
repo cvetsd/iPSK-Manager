@@ -64,11 +64,16 @@
                 $x = 0;
                 foreach($epIdGroups as $item)
                 {
+                    print "Item ".$x."\n";
                     foreach($item as $epGroup)
                     {
-                        print "Item ".$x."\n";
-                        print_r($epGroup);
-                        $x++;
+                        print "epGroup ".$x."\n";
+                        foreach($epGroup as $epGroupItem)
+                        {
+                            print "epGroupItem ".$x."\n";
+                            print_r($epGroup);
+                            $x++;
+                        }
                     }
                 }
             }
