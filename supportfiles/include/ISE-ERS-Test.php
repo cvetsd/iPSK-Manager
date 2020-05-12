@@ -64,10 +64,10 @@
                 $x = 0;
                 foreach($epIdGroups as $item)
                 {
-                    foreach($item as %epGroup)
+                    foreach($item as $epGroup)
                     {
                         print "Item ".$x."\n";
-                        print_r($item);
+                        print_r($epGroup);
                         $x++;
                     }
                 }
