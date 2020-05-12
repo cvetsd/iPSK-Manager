@@ -58,9 +58,16 @@
                 $endpointIdentityGroupsArray = arraySortAlpha($endpointIdentityGroupsArray);
                 $endpointIdentityGroups = json_encode($endpointIdentityGroupsArray);
 
-                print $endpointIdentityGroups;
-                print_r(json_decode($endpointIdentityGroups));
-                print_r(json_decode($endpointIdentityGroups, true));
+                #print $endpointIdentityGroups;
+                #print_r(json_decode($endpointIdentityGroups));
+                $epIdGroups = json_decode($endpointIdentityGroups, true);
+                $x = 0;
+                foreach($epIdGroups as $item)
+                {
+                    print "Item ".$x;
+                    print_r($item);
+                    $x++;
+                }
             }
         }
     }else
