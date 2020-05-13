@@ -44,19 +44,15 @@ $htmlbody = <<<HTML
       </div>
       <div class="modal-body">
 	  	<div class="container-fluid">
-			<div class="row text-left">
-				<div class="col-sm"></div>
-				<div class="shadow">
-					<h6>Endpoint Group Type:</h6>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md">
-								<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation">{$pageData['GroupTypeOptions']}</select>
-							</div>
+		  <div class="form-group input-group-sm font-weight-bold">
+				<h6>Endpoint Group Type:</h6>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md">
+							<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation">{$pageData['GroupTypeOptions']}</select>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm"></div>
 			</div>
 		</div>
 		<label class="font-weight-bold" for="epGroupName">iPSK Endpoint Group Name:</label>
