@@ -45,7 +45,7 @@ $htmlbody = <<<HTML
       <div class="modal-body">
 	  	<div class="container-fluid">
 		  <div class="form-group input-group-sm font-weight-bold">
-				<h6>Endpoint Group Type:</h6>
+		  <label class="font-weight-bold" for="epGroupType">Endpoint Group Type:</label>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md">
