@@ -28,7 +28,9 @@
 			$authList .= "<option value=\"".$row['id']."\">".$row['authzPolicyName']."</option>\n";
 		}
 	}
-	
+
+	$pageData['GroupTypeOptions'] = '<option value="0">Internal</option><option value="3">Cisco ISE "Endpoint Group"</option>';
+
 $htmlbody = <<<HTML
 <!-- Modal -->
 <div class="modal fade" id="viewepggroup" tabindex="-1" role="dialog" aria-labelledby="viewepggroupModal" aria-hidden="true">
@@ -41,6 +43,27 @@ $htmlbody = <<<HTML
         </button>
       </div>
       <div class="modal-body">
+	  	<div class="container-fluid">
+			<div class="row text-left">
+				<div class="col-sm"></div>
+				<div class="col-10 col-sm-10 mt-2 shadow mx-auto p-2 bg-white border border-primary">
+					<h6>Endpoint Group Type:</h6>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md">
+								<select name="endpointGroupType" id="endpointGroupType" class="form-control mt-2 mb-3 shadow"><option value="0">(Select an Endpoint Group Type)</option>{$pageData['bulkOption']}</select>
+							</div>
+						</div>
+						<div id="sampleFileDownload" class="row d-none">
+							<div class="col-md">
+								CSV Format Sample File Download: <a href="/query.php?portalId=$portalId&samplefile=1">import_sample.csv</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm"></div>
+			</div>
+		</div>
 		<label class="font-weight-bold" for="epGroupName">iPSK Endpoint Group Name:</label>
 		<div class="form-group input-group-sm font-weight-bold">
 			<input type="text" class="form-control shadow form-validation" validation-state="required" id="epGroupName">
