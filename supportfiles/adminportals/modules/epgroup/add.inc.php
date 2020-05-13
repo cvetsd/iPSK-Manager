@@ -51,7 +51,7 @@ $htmlbody = <<<HTML
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md">
-								<select name="endpointGroupType" id="endpointGroupType" class="form-control mt-2 mb-3 shadow"><option value="0">(Select an Endpoint Group Type)</option>{$pageData['GroupTypeOptions']}</select>
+								<select name="endpointGroupType" id="endpointGroupType" class="form-control mt-2 mb-3 shadow">{$pageData['GroupTypeOptions']}</select>
 							</div>
 						</div>
 						<div id="sampleFileDownload" class="row d-none">
