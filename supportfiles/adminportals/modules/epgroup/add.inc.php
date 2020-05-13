@@ -46,17 +46,12 @@ $htmlbody = <<<HTML
 	  	<div class="container-fluid">
 			<div class="row text-left">
 				<div class="col-sm"></div>
-				<div class="col-10 col-sm-10 mt-2 shadow mx-auto p-2 bg-white border border-primary">
+				<div class="shadow">
 					<h6>Endpoint Group Type:</h6>
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md">
-								<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow shadow form-validation">{$pageData['GroupTypeOptions']}</select>
-							</div>
-						</div>
-						<div id="sampleFileDownload" class="row d-none">
-							<div class="col-md">
-								CSV Format Sample File Download: <a href="/query.php?portalId=$portalId&samplefile=1">import_sample.csv</a>
+								<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation">{$pageData['GroupTypeOptions']}</select>
 							</div>
 						</div>
 					</div>
