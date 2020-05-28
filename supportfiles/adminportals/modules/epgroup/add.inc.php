@@ -49,7 +49,7 @@ $htmlbody = <<<HTML
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md">
-							<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation" onchange="myFunction()">{$pageData['GroupTypeOptions']}</select>
+							<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation">{$pageData['GroupTypeOptions']}</select>
 						</div>
 					</div>
 				</div>
