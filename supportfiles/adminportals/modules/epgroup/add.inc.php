@@ -96,9 +96,11 @@ $htmlbody = <<<HTML
 	});
 	myitter = 0;
 	$("#endpointGroupType").onchange(function()){
-		if myitter % 2 == 0
-		
-		$("#exampleModalLongTitle").innerHTML = "This changed";
+		if (myitter % 2 == 0){
+			$("#exampleModalLongTitle").innerHTML = "This changed even";
+		} else {
+			$("#exampleModalLongTitle").innerHTML = "This changed odd";	
+		}
 	
 		myitter += 1;
 
