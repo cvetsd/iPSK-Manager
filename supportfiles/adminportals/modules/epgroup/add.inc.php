@@ -49,7 +49,7 @@ $htmlbody = <<<HTML
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md">
-							<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation">{$pageData['GroupTypeOptions']}</select>
+							<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation" onchange="myFunction()">{$pageData['GroupTypeOptions']}</select>
 						</div>
 					</div>
 				</div>
@@ -94,6 +94,16 @@ $htmlbody = <<<HTML
 	$(function() {	
 		feather.replace()
 	});
+	myitter = 0;
+	$("#endpointGroupType").onchange(function()){
+		if myitter % 2 == 0
+		
+		$("#exampleModalLongTitle").innerHTML = "This changed";
+	
+		myitter += 1;
+
+	}
+
 	$("#showpassword").on('click', function(event) {
 		event.preventDefault();
 		if($("#presharedKey").attr('type') == "text"){
