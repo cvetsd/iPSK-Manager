@@ -96,7 +96,7 @@ $htmlbody = <<<HTML
 	});
 	
 	var myitter = 0;
-	$("#endpointGroupType").onchange(function()){
+	$("#endpointGroupType").onchange(function() {
 		if (myitter % 2 == 0){
 			$("#exampleModalLongTitle").innerHTML = "This changed even";
 		} else {
