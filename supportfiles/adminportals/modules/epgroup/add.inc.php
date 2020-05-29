@@ -94,8 +94,8 @@ $htmlbody = <<<HTML
 	$(function() {	
 		feather.replace()
 	});
-	/*
-	myitter = 0;
+	
+	var myitter = 0;
 	$("#endpointGroupType").onchange(function()){
 		if (myitter % 2 == 0){
 			$("#exampleModalLongTitle").innerHTML = "This changed even";
@@ -106,7 +106,7 @@ $htmlbody = <<<HTML
 		myitter += 1;
 
 	}
-*/
+
 	$("#showpassword").on('click', function(event) {
 		event.preventDefault();
 		if($("#presharedKey").attr('type') == "text"){
