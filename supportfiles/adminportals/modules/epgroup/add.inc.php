@@ -105,7 +105,7 @@ $htmlbody = <<<HTML
 	
 		myitter += 1;
 
-	}
+	});
 
 	$("#showpassword").on('click', function(event) {
 		event.preventDefault();
