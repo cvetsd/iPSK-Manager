@@ -34,57 +34,56 @@
 $htmlbody = <<<HTML
 <!-- Modal -->
 <div class="modal fade" id="viewepggroup" tabindex="-1" role="dialog" aria-labelledby="viewepggroupModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Endpoint Grouping</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-	  	<div class="container-fluid">
-		  <div class="form-group input-group-sm font-weight-bold">
-		  <label class="font-weight-bold" for="epGroupType">Endpoint Group Type:</label>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Add Endpoint Grouping</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md">
-							<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation" onchange="myFunction()">{$pageData['GroupTypeOptions']}</select>
+					<div class="form-group input-group-sm font-weight-bold">
+						<label class="font-weight-bold" for="epGroupType">Endpoint Group Type:</label>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md">
+									<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation" onchange="myFunction()">{$pageData['GroupTypeOptions']}</select>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<label class="font-weight-bold" for="epGroupName">iPSK Endpoint Group Name:</label>
-		<div class="form-group input-group-sm font-weight-bold">
-			<input type="text" class="form-control shadow form-validation" validation-state="required" id="epGroupName">
-		</div>
-		<label class="font-weight-bold" for="epGroupDescription">Description:</label>
-		<div class="form-group input-group-sm font-weight-bold">
-			<input type="text" class="form-control shadow" id="epGroupDescription">
-		</div>
-		<div class="form-row">
-			<div class="col">
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input checkbox-update" base-value="1" value="0" id="notificationPermission">
-					<label class="custom-control-label" for="notificationPermission">Email Notifications</label>
+				<label class="font-weight-bold" for="epGroupName">iPSK Endpoint Group Name:</label>
+				<div class="form-group input-group-sm font-weight-bold">
+					<input type="text" class="form-control shadow form-validation" validation-state="required" id="epGroupName">
+				</div>
+				<label class="font-weight-bold" for="epGroupDescription">Description:</label>
+				<div class="form-group input-group-sm font-weight-bold">
+					<input type="text" class="form-control shadow" id="epGroupDescription">
+				</div>
+				<div class="form-row">
+					<div class="col">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input checkbox-update" base-value="1" value="0" id="notificationPermission">
+							<label class="custom-control-label" for="notificationPermission">Email Notifications</label>
+						</div>
+					</div>
+				</div>	
+				<label class="font-weight-bold" for="authzTemplate">Authorization Template:</label>
+				<div class="form-group input-group-sm font-weight-bold">
+					<select id="authzTemplate" class="form-control mt-2 mb-3 shadow">
+						$authList
+					</select>
 				</div>
 			</div>
-		</div>	
-		<label class="font-weight-bold" for="authzTemplate">Authorization Template:</label>
-		<div class="form-group input-group-sm font-weight-bold">
-			<select id="authzTemplate" class="form-control mt-2 mb-3 shadow">
-				$authList
-			</select>
+			<div class="modal-footer">
+				<a id="create" href="#" module="epgroup" sub-module="create" role="button" class="btn btn-primary shadow" data-dismiss="modal">Create</a>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
 		</div>
-	  </div>
-      <div class="modal-footer">
-	  <a id="create" href="#" module="epgroup" sub-module="create" role="button" class="btn btn-primary shadow" data-dismiss="modal"
->Create</a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+	</div>
 </div>
 <script>
 	var failure;
@@ -96,11 +95,11 @@ $htmlbody = <<<HTML
 	});
 	
 	var myitter = 0;
-	$("#endpointGroupType").onchange(function() {
+	$("#endpointGroupType").change(function() {
 		if (myitter % 2 == 0){
-			$("#exampleModalLongTitle").innerHTML = "This changed even";
+			$("#exampleModalLongTitle").show();
 		} else {
-			$("#exampleModalLongTitle").innerHTML = "This changed odd";	
+			$("#exampleModalLongTitle").hide();	
 		}
 	
 		myitter += 1;
