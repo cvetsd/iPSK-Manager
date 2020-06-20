@@ -76,7 +76,7 @@
                         if($y == 2) foreach($epGroup as $epGroupItem)
                         {
                             print_r("Level z ".$z."\n");
-                            print_r($epGroup["name"]);
+                            print_r($epGroup);
                             $z++;
                         }
                     }
