@@ -68,12 +68,12 @@
                 {
                     print_r("Level x ".$x."\n");
                     $x++;
-                    if($y == 2) foreach($item as $epGroup)
+                    foreach($item as $epGroup)
                     {
                         print_r("Level y ".$y."\n");
                         print_r($item["name"]);
                         $y++;
-                        foreach($epGroup as $epGroupItem)
+                        if($y == 2) foreach($epGroup as $epGroupItem)
                         {
                             print_r("Level z ".$z."\n");
                             print_r($epGroup["name"]);
