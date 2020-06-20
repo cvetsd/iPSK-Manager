@@ -67,15 +67,16 @@
                 foreach($epIdGroups as $item)
                 {
                     print_r("Level x ".$x."\n");
-                    foreach($item as $epGroup)
                     $x++;
+                    foreach($item as $epGroup)
                     {
                         print_r("Level y ".$y."\n");
-                        foreach($epGroup as $epGroupItem)
+                        print_r($item["name"]);
                         $y++;
+                        foreach($epGroup as $epGroupItem)
                         {
                             print_r("Level z ".$z."\n");
-                            print_r($epGroup);
+                            print_r($epGroup["name"]);
                             $z++;
                         }
                     }
