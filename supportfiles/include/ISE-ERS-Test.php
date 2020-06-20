@@ -68,7 +68,7 @@
                 {
                     print_r("Level x ".$x."\n");
                     $x++;
-                    foreach($item as $epGroup)
+                    if($y == 2) foreach($item as $epGroup)
                     {
                         print_r("Level y ".$y."\n");
                         print_r($item["name"]);
