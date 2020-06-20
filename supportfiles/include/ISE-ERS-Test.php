@@ -64,9 +64,10 @@
                 $x = 0;
                 $y = 0;
                 $z = 0;
-                foreach($epIdGroups[0][1] as $item)
+                foreach($epIdGroups["SearchResult"]["resoures"] as $item)
                 {
                     print_r("Level x ".$x."\n");
+                    print($item["name"]);
                     $x++;
                     foreach($item as $epGroup)
                     {
