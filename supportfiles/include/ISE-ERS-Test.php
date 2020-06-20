@@ -75,7 +75,7 @@
                         $y++;
                         {
                             print_r("Level z ".$z."\n");
-                            print($epGroup);
+                            print_r($epGroup);
                             $z++;
                         }
                     }
