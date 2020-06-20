@@ -62,21 +62,26 @@
                 print_r(json_decode($endpointIdentityGroups, true));
                 $epIdGroups = json_decode($endpointIdentityGroups, true);
                 $x = 0;
+                $y = 0;
+                $z = 0;
                 foreach($epIdGroups as $item)
                 {
-                    print "Item ".$x."\n";
+                    print_r("Level x ".$x."\n");
                     foreach($item as $epGroup)
+                    $x++;
                     {
-                        print "epGroup ".$x."\n";
+                        print_r("Level y ".$y."\n");
                         foreach($epGroup as $epGroupItem)
+                        $y++;
                         {
-                            print "epGroupItem ".$x."\n";
+                            print_r("Level z ".$z."\n");
                             print($epGroup);
-                            $x++;
+                            $z++;
                         }
                     }
                 }
             }
+            print("x: " . $x . " y: " . $y . " z: " . $z . "\n");
         }
     }else
     {
