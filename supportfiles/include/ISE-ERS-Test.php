@@ -62,16 +62,16 @@
                 #print_r(json_decode($endpointIdentityGroups, true));
                 $epIdGroups = json_decode($endpointIdentityGroups, true);
                 $x = 0;
-                $y = 0;
-                $z = 0;
+                #$y = 0;
+                #$z = 0;
                 foreach($epIdGroups["SearchResult"]["resources"] as $item)
                 {
-                    print_r("Level x ".$x."\n");
+                    #print_r("Level x ".$x."\n");
                     print($item["name"] . "\n");
-                    $x++;
+                    #$x++;
                 }
             }
-            print("x: " . $x . " y: " . $y . " z: " . $z . "\n");
+            #print("x: " . $x . " y: " . $y . " z: " . $z . "\n");
         }
     }else
     {
