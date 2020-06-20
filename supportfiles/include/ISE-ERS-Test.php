@@ -33,7 +33,7 @@
 
     $ipskISEDB->set_encryptionKey($encryptionKey);
     $encryptionKey = "";
-
+ 
     $ersCreds = $ipskISEDB->getISEERSSettings();
     print_r($ersCreds);
     if($ersCreds['enabled'])
@@ -71,7 +71,7 @@
                         foreach($epGroup as $epGroupItem)
                         {
                             print "epGroupItem ".$x."\n";
-                            print_r($epGroup);
+                            print($epGroup);
                             $x++;
                         }
                     }
@@ -82,4 +82,6 @@
     {
 	    print "ersCreds not enabled?";
     }
+    print("\nfetched endpoint groups: \n");
+    print_r($ipskISEDB->getEndpointGroups());
 ?>
