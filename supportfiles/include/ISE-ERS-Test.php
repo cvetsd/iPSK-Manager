@@ -67,7 +67,7 @@
                 foreach($epIdGroups["SearchResult"]["resources"] as $item)
                 {
                     print_r("Level x ".$x."\n");
-                    print($item["name"]);
+                    print($item["name"] . "\n");
                     $x++;
                 }
             }
