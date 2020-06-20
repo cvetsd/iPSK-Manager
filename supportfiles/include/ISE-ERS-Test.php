@@ -64,14 +64,13 @@
                 $x = 0;
                 $y = 0;
                 $z = 0;
-                foreach($epIdGroups as $item)
+                foreach($epIdGroups[0][1] as $item)
                 {
                     print_r("Level x ".$x."\n");
                     $x++;
                     foreach($item as $epGroup)
                     {
                         print_r("Level y ".$y."\n");
-                        print_r($item["name"]);
                         $y++;
                         if($y == 2) foreach($epGroup as $epGroupItem)
                         {
