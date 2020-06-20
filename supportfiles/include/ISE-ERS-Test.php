@@ -59,7 +59,7 @@
                 $endpointIdentityGroups = json_encode($endpointIdentityGroupsArray);
 
                 #print $endpointIdentityGroups;
-                print_r(json_decode($endpointIdentityGroups, true));
+                #print_r(json_decode($endpointIdentityGroups, true));
                 $epIdGroups = json_decode($endpointIdentityGroups, true);
                 $x = 0;
                 $y = 0;
@@ -69,17 +69,6 @@
                     print_r("Level x ".$x."\n");
                     print($item["name"]);
                     $x++;
-                    foreach($item as $epGroup)
-                    {
-                        print_r("Level y ".$y."\n");
-                        $y++;
-                        if($y == 2) foreach($epGroup as $epGroupItem)
-                        {
-                            print_r("Level z ".$z."\n");
-                            print_r($epGroupItem["name"]);
-                            $z++;
-                        }
-                    }
                 }
             }
             print("x: " . $x . " y: " . $y . " z: " . $z . "\n");
