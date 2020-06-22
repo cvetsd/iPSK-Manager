@@ -98,15 +98,18 @@ $htmlbody = <<<HTML
 	var myitter = 0;
 	$("#endpointGroupType").change(function() {
 		if (myitter % 2 == 0){
-			$("#epGroupNameDiv").show();
-			$("#epGroupSelectNameDiv").hide();
-			
+			$("#epGroupNameDiv").hide();
+			$("#epGroupSelectNameDiv").show();
 		} 
 		else 
 		{
-			$("#epGroupNameDiv").hide();
-			$("#epGroupSelectNameDiv").show();
-			
+			$("#epGroupNameDiv").show();
+			$("#epGroupSelectNameDiv").hide();
+			var dropdown = $('#epGroupName');
+			dropdown.empty();
+			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+			dropdown.prop('selectedIndex', 0);
+
 		}
 	
 		myitter += 1;
