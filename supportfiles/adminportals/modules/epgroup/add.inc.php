@@ -102,7 +102,7 @@ $htmlbody = <<<HTML
 			$("#epGroupSelectNameDiv").show();
 			var dropdown = $('#epGroupNameSel');
 			dropdown.empty();
-			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+			dropdown.append('<option selected="false" disabled>Select an Option>');
 			dropdown.prop('selectedIndex', 0);
 			$.ajax({
 				url: "ajax/getdata.php",
