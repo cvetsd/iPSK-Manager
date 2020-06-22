@@ -111,7 +111,7 @@ $htmlbody = <<<HTML
 					'data-command': 'getdata',
 					'data-set': 'iseEpGroups',
 				},
-				type: "GET",
+				type: "POST",
 				dataType: "html",
 				success: function (data) {
 					dropdown.append($('<option></option>').attr('value', data).text(data));
