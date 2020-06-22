@@ -56,8 +56,8 @@ $htmlbody = <<<HTML
 					<input type="text" class="form-control shadow form-validation" validation-state="required" id="epGroupName">
 				</div>
 				<div id="epGroupSelectNameDiv" class="form-group input-group-sm font-weight-bold">
-					<select id="epGroupName" class="form-control mt-2 mb-3 shadow">
-						$authList
+					<select id="epGroupNameSel" class="form-control mt-2 mb-3 shadow">
+						<option>nothing to see</option>
 					</select>
 				</div>
 				<label class="font-weight-bold" for="epGroupDescription">Description:</label>
@@ -100,7 +100,7 @@ $htmlbody = <<<HTML
 		if (myitter % 2 == 0){
 			$("#epGroupNameDiv").hide();
 			$("#epGroupSelectNameDiv").show();
-			var dropdown = $('#epGroupName');
+			var dropdown = $('#epGroupNameSel');
 			dropdown.empty();
 			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
 			dropdown.prop('selectedIndex', 0);
