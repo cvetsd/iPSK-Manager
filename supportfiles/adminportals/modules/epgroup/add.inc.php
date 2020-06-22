@@ -46,12 +46,8 @@ $htmlbody = <<<HTML
 				<div class="container-fluid">
 					<div class="form-group input-group-sm font-weight-bold">
 						<label class="font-weight-bold" for="epGroupType">Endpoint Group Type:</label>
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-md">
-									<select name="endpointGroupType" id="endpointGroupType" class="form-control shadow form-validation" onchange="myFunction()">{$pageData['GroupTypeOptions']}</select>
-								</div>
-							</div>
+						<div class="form-group input-group-sm font-weight-bold">
+							<select name="endpointGroupType" id="endpointGroupType" class="form-control mt-2 mb-3 shadow">{$pageData['GroupTypeOptions']}</select>
 						</div>
 					</div>
 				</div>
