@@ -52,10 +52,10 @@ $htmlbody = <<<HTML
 					</div>
 				</div>
 				<label class="font-weight-bold" for="epGroupName">iPSK Endpoint Group Name:</label>
-				<div id="epGroupNameId" class="form-group input-group-sm font-weight-bold">
+				<div id="epGroupNameDiv" class="form-group input-group-sm font-weight-bold">
 					<input type="text" class="form-control shadow form-validation" validation-state="required" id="epGroupName">
 				</div>
-				<div id="epGroupSelectNameId" class="form-group input-group-sm font-weight-bold">
+				<div id="epGroupSelectNameDiv" class="form-group input-group-sm font-weight-bold">
 					<select id="epGroupName" class="form-control mt-2 mb-3 shadow">
 						$authList
 					</select>
@@ -98,13 +98,37 @@ $htmlbody = <<<HTML
 	var myitter = 0;
 	$("#endpointGroupType").change(function() {
 		if (myitter % 2 == 0){
-			$("#epGroupNameId").show();
-			$("#epGroupSelectNameId").hide();
-			$("#exampleModalLongTitle").show();
+			$("#epGroupNameDiv").show();
+			$("#epGroupSelectNameDiv").hide();
+			
 		} else {
-			$("#epGroupNameId").hide();
-			$("#epGroupSelectNameId").show();
-			$("#exampleModalLongTitle").hide();
+			$("#epGroupNameDiv").hide();
+			$("#epGroupSelectNameDiv").show();
+			let dropdown = $('#epGroupName');
+			dropdown.empty();
+			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+			dropdown.prop('selectedIndex', 0);
+			$.ajax({
+				url: "ajax/getdata.php",
+
+				data: {
+					'data-command': 'getdata',
+					'data-set': 'iseEpGroups',
+				},
+				type: "GET",
+				dataType: "html",
+				success: function (data) {
+					$.each(data, function (key, entry)) {
+						dropdown.append($('<option></option>').attr('value', entry).text(entry));
+					}
+				},
+				error: function (xhr, status) {
+					$('#mainContent').html("<h6 class=\"text-center\"><span class=\"text-danger\">Error Loading Selection:</span>  Verify the installation/configuration and/or contact your system administrator!</h6>");
+				},
+				complete: function (xhr, status) {
+					//$('#showresults').slideDown('slow')
+				}
+			});
 		}
 	
 		myitter += 1;
