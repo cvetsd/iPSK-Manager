@@ -100,11 +100,6 @@ $htmlbody = <<<HTML
 		if (myitter % 2 == 0){
 			$("#epGroupNameDiv").hide();
 			$("#epGroupSelectNameDiv").show();
-		} 
-		else 
-		{
-			$("#epGroupNameDiv").show();
-			$("#epGroupSelectNameDiv").hide();
 			var dropdown = $('#epGroupName');
 			dropdown.empty();
 			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
@@ -122,13 +117,17 @@ $htmlbody = <<<HTML
 					dropdown.append($('<option></option>').attr('value', data).text(data));
 				},
 				error: function (xhr, status) {
-					$('#mainContent').html("<h6 class=\"text-center\"><span class=\"text-danger\">Error Loading Selection:</span>  Verify the installation/configuration and/or contact your system administrator!</h6>");
+					dropdown.append($('<option></option>').attr('value', "unable to fetch ISE groups").text("unable to fetch ISE groups"));
 				},
 				complete: function (xhr, status) {
 					//$('#showresults').slideDown('slow')
 				}
 			});
-
+		} 
+		else 
+		{
+			$("#epGroupNameDiv").show();
+			$("#epGroupSelectNameDiv").hide();
 		}
 	
 		myitter += 1;
