@@ -109,7 +109,7 @@ $htmlbody = <<<HTML
 
 				data: {
 					'data-command': 'getdata',
-					'data-set': 'iseEpGroups'
+					'data-set': 'iseepgroups'
 				},
 				type: "POST",
 				dataType: "html",
