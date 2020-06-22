@@ -52,8 +52,13 @@ $htmlbody = <<<HTML
 					</div>
 				</div>
 				<label class="font-weight-bold" for="epGroupName">iPSK Endpoint Group Name:</label>
-				<div class="form-group input-group-sm font-weight-bold">
+				<div id="epGroupNameId" class="form-group input-group-sm font-weight-bold">
 					<input type="text" class="form-control shadow form-validation" validation-state="required" id="epGroupName">
+				</div>
+				<div id="epGroupSelectNameId" class="form-group input-group-sm font-weight-bold">
+					<select id="epGroupName" class="form-control mt-2 mb-3 shadow">
+						$authList
+					</select>
 				</div>
 				<label class="font-weight-bold" for="epGroupDescription">Description:</label>
 				<div class="form-group input-group-sm font-weight-bold">
@@ -95,7 +100,9 @@ $htmlbody = <<<HTML
 		if (myitter % 2 == 0){
 			$("#exampleModalLongTitle").show();
 		} else {
-			$("#exampleModalLongTitle").hide();	
+			$("#epGroupNameId").show();
+			$("#exampleModalLongTitle").hide();
+			myitter -= 1;
 		}
 	
 		myitter += 1;
