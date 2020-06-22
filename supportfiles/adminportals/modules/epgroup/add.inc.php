@@ -101,10 +101,12 @@ $htmlbody = <<<HTML
 			$("#epGroupNameDiv").show();
 			$("#epGroupSelectNameDiv").hide();
 			
-		} else {
+		} 
+		else 
+		{
 			$("#epGroupNameDiv").hide();
 			$("#epGroupSelectNameDiv").show();
-			let dropdown = $('#epGroupName');
+			var dropdown = $('#epGroupName');
 			dropdown.empty();
 			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
 			dropdown.prop('selectedIndex', 0);
