@@ -109,6 +109,21 @@ $htmlbody = <<<HTML
 			dropdown.empty();
 			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
 			dropdown.prop('selectedIndex', 0);
+			$.ajax({
+				url: "ajax/getdata.php",
+
+				data: {
+					'data-command': 'getdata',
+					'data-set': 'iseEpGroups',
+				},
+				type: "GET",
+				dataType: "html",
+				success: function (data) {
+					$.each(data, function (key, entry)) {
+						dropdown.append($('<option></option>').attr('value', entry).text(entry));
+					}
+				}
+			});
 
 		}
 	
