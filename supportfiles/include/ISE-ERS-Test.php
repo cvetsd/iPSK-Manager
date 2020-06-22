@@ -34,7 +34,8 @@
     $ipskISEDB->set_encryptionKey($encryptionKey);
     $encryptionKey = "";
  
-    $ersCreds = $ipskISEDB->getISEERSSettings();
+    $ersCreds = $ipskISEDB->getISEERSSettings()["enabled"];
+    print("\n $ersCreds value:" . $ersCreds);
     print_r($ersCreds);
     if($ersCreds['enabled'])
     {
@@ -47,7 +48,7 @@
         $ipskISEERS = new CiscoISEERSRestAPI($ersCreds['ersHost'], $ersCreds['ersUsername'], $ersCreds['ersPassword'], $ersCreds['verify-ssl-peer'], $ipskISEDB);
         $ersCreds = "";
 
-        $iseERSIntegrationAvailable = true;
+        $iseERSIntegrationAvailable = $ipskISEDB->getISEERSSettings();
         if($iseERSIntegrationAvailable)
         {
             $endpointIdentityGroups = $ipskISEERS->getEndPointIdentityGroups();
