@@ -98,11 +98,13 @@ $htmlbody = <<<HTML
 	var myitter = 0;
 	$("#endpointGroupType").change(function() {
 		if (myitter % 2 == 0){
+			$("#epGroupNameId").show();
+			$("#epGroupSelectNameId").hide();
 			$("#exampleModalLongTitle").show();
 		} else {
-			$("#epGroupNameId").show();
+			$("#epGroupNameId").hide();
+			$("#epGroupSelectNameId").show();
 			$("#exampleModalLongTitle").hide();
-			myitter -= 1;
 		}
 	
 		myitter += 1;
