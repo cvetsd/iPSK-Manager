@@ -33,7 +33,8 @@
 
     $ipskISEDB->set_encryptionKey($encryptionKey);
     $encryptionKey = "";
- 
+    
+    print_r($ipskISEDB->getISEERSSettings());
     $ersCreds = $ipskISEDB->getISEERSSettings()["enabled"];
     print("\n $ersCreds value:" . $ersCreds);
     print_r($ersCreds);
