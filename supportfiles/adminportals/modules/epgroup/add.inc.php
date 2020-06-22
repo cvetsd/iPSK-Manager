@@ -119,9 +119,13 @@ $htmlbody = <<<HTML
 				type: "GET",
 				dataType: "html",
 				success: function (data) {
-					$.each(data, function (key, entry)) {
-						dropdown.append($('<option></option>').attr('value', entry).text(entry));
-					}
+					//nothing to see here
+				},
+				error: function (xhr, status) {
+					$('#mainContent').html("<h6 class=\"text-center\"><span class=\"text-danger\">Error Loading Selection:</span>  Verify the installation/configuration and/or contact your system administrator!</h6>");
+				},
+				complete: function (xhr, status) {
+					//$('#showresults').slideDown('slow')
 				}
 			});
 
