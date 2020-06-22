@@ -108,8 +108,8 @@ $htmlbody = <<<HTML
 				url: "ajax/getdata.php",
 
 				data: {
-					'data-command': 'getdata',
-					'data-set': 'iseEpGroups',
+					data-command: 'getdata',
+					data-set: 'iseEpGroups',
 				},
 				type: "POST",
 				dataType: "html",
