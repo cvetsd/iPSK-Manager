@@ -87,28 +87,11 @@
 			$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 			
 			print $jsonData;
-		if($sanitizedInput['data-command'] == "getdata" && $sanitizedInput['data-set'] == "internalgroups"){
-						
-			$internalGroups = $ipskISEDB->getInternalGroups($sanitizedInput['id']);
-			if($internalGroups->num_rows != 0){
-				while($row = $internalGroups->fetch_assoc()){
-					$dataSet[$row['id']] = $row['groupName'];
-				}
-				$jsonData = json_encode($dataSet,true);
-			}else{
-				$jsonData = '{""}';
-			}
-			//LOG::Entry
-			$logData = $ipskISEDB->generateLogData(Array("jsonData"=>$jsonData), Array("sanitizedInput"=>$sanitizedInput));
-			$logMessage = "REQUEST:SUCCESS;GET-DATA-COMMAND:".$sanitizedInput['data-command'].";DATA-SET:".$sanitizedInput['data-set'].";";
-			$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
-			
-			print $jsonData;
-		}else if($sanitizedInput['data-command'] == "getdata" && $sanitizedInput['data-set'] == "iseEpGroups"){
-			
+		}if($sanitizedInput['data-command'] == "getdata" && $sanitizedInput['data-set'] == "iseEpGroups"){
+		
 			$ersCreds = $ipskISEDB->getISEERSSettings();
 			if($ersCreds['enabled'])
-    		{
+			{
 				if(!isset($ersCreds['verify-ssl-peer']))
 				{
 					$ersCreds['verify-ssl-peer'] = true;
@@ -127,12 +110,13 @@
 					{
 						print($item["name"] . "\n");
 					}
-				//LOG::Entry
-				$logData = $ipskISEDB->generateLogData(Array("jsonData"=>$jsonData), Array("sanitizedInput"=>$sanitizedInput));
-				$logMessage = "REQUEST:SUCCESS;GET-DATA-COMMAND:".$sanitizedInput['data-command'].";DATA-SET:".$sanitizedInput['data-set'].";";
-				$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
-				
-				print $jsonData;
+					//LOG::Entry
+					$logData = $ipskISEDB->generateLogData(Array("jsonData"=>$jsonData), Array("sanitizedInput"=>$sanitizedInput));
+					$logMessage = "REQUEST:SUCCESS;GET-DATA-COMMAND:".$sanitizedInput['data-command'].";DATA-SET:".$sanitizedInput['data-set'].";";
+					$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+					
+					print $jsonData;
+				}
 			}
 			else{
 				//LOG::Entry
@@ -222,5 +206,5 @@
 			header('HTTP/1.0 404 Not Found', true, 404);
 		}
 	}
-
+	
 ?>
