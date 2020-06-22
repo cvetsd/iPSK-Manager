@@ -24,7 +24,7 @@
 	
 	$dataCommandRegEx = "/^(?:getdata|test|generate|validate)$/";
 	
-	$dataDataSetRegEx = "/^(?:internalgroups|ldap|psk|authzprofile)$/";
+	$dataDataSetRegEx = "/^(?:internalgroups|ldap|psk|authzprofile|iseepgroups)$/";
 	
 	$dataInputTypeRegEx = "/^(?:id)$/";
 		
@@ -87,7 +87,7 @@
 			$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 			
 			print $jsonData;
-		}if($sanitizedInput['data-command'] == "getdata" && $sanitizedInput['data-set'] == "iseEpGroups"){
+		}if($sanitizedInput['data-command'] == "getdata" && $sanitizedInput['data-set'] == "iseepgroups"){
 		
 			$ersCreds = $ipskISEDB->getISEERSSettings();
 			if($ersCreds['enabled'])
