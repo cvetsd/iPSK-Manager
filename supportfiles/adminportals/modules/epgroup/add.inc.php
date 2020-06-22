@@ -106,31 +106,7 @@ $htmlbody = <<<HTML
 		{
 			$("#epGroupNameDiv").hide();
 			$("#epGroupSelectNameDiv").show();
-			var dropdown = $('#epGroupName');
-			dropdown.empty();
-			dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
-			dropdown.prop('selectedIndex', 0);
-			$.ajax({
-				url: "ajax/getdata.php",
-
-				data: {
-					'data-command': 'getdata',
-					'data-set': 'iseEpGroups',
-				},
-				type: "GET",
-				dataType: "html",
-				success: function (data) {
-					$.each(data, function (key, entry)) {
-						dropdown.append($('<option></option>').attr('value', entry).text(entry));
-					}
-				},
-				error: function (xhr, status) {
-					$('#mainContent').html("<h6 class=\"text-center\"><span class=\"text-danger\">Error Loading Selection:</span>  Verify the installation/configuration and/or contact your system administrator!</h6>");
-				},
-				complete: function (xhr, status) {
-					//$('#showresults').slideDown('slow')
-				}
-			});
+			
 		}
 	
 		myitter += 1;
