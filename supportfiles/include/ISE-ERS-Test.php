@@ -36,9 +36,9 @@
     
     print_r($ipskISEDB->getISEERSSettings());
     $ersCreds = $ipskISEDB->getISEERSSettings()["enabled"];
-    print("\n $ersCreds value:" . $ersCreds);
+    print("\n \$ersCreds value:" . $ersCreds);
     print_r($ersCreds);
-    if($ersCreds['enabled'])
+    if($ersCreds)
     {
 
         if(!isset($ersCreds['verify-ssl-peer']))
