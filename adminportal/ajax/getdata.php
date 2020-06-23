@@ -102,14 +102,17 @@
 
 				if($endpointIdentityGroups)
 				{
+					$epGroups = array();
 					$endpointIdentityGroupsArray = json_decode($endpointIdentityGroups,TRUE);
 					$endpointIdentityGroupsArray = arraySortAlpha($endpointIdentityGroupsArray);
 					$endpointIdentityGroups = json_encode($endpointIdentityGroupsArray);
 					$epIdGroups = json_decode($endpointIdentityGroups, true);
 					foreach($epIdGroups["SearchResult"]["resources"] as $item)
 					{
-						print($item["name"] . "\n");
+						$epGroups[] = $item["name"];
 					}
+
+					print(json_encode($epGroups));
 					//LOG::Entry
 					$logData = $ipskISEDB->generateLogData(Array("jsonData"=>$jsonData), Array("sanitizedInput"=>$sanitizedInput));
 					$logMessage = "REQUEST:SUCCESS;GET-DATA-COMMAND:".$sanitizedInput['data-command'].";DATA-SET:".$sanitizedInput['data-set'].";";
