@@ -139,7 +139,7 @@ $htmlbody = <<<HTML
 	});
 
 	$('#epGroupNameSel').change(function(){
-		$('epGroupName').val($(this).val());
+		$('#epGroupName').val($(this).val());
 	});
 
 	$("#showpassword").on('click', function(event) {
