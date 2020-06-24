@@ -1735,22 +1735,22 @@
 				$queryResult = $this->dbConnection->query($query);
 				
 				if($queryResult){
+					$ersCreds = $ipskISEDB->getISEERSSettings();
+					if($ersCreds['enabled'])
+					{
+						if(!isset($ersCreds['verify-ssl-peer']))
+						{
+							$ersCreds['verify-ssl-peer'] = true;
+						}
+						$ipskISEERS = new CiscoISEERSRestAPI($ersCreds['ersHost'], $ersCreds['ersUsername'], $ersCreds['ersPassword'], $ersCreds['verify-ssl-peer'], $ipskISEDB);
+						$ersCreds = "";
+						$endpointIdentityGroups = $ipskISEERS->createEndPoint($macAddress, $fullName, $description, $email, $psk);
+					}
 					return $this->dbConnection->insert_id;
 				}else{
 					return false;
 				}
 
-				$ersCreds = $ipskISEDB->getISEERSSettings();
-				if($ersCreds['enabled'])
-				{
-					if(!isset($ersCreds['verify-ssl-peer']))
-					{
-						$ersCreds['verify-ssl-peer'] = true;
-					}
-					$ipskISEERS = new CiscoISEERSRestAPI($ersCreds['ersHost'], $ersCreds['ersUsername'], $ersCreds['ersPassword'], $ersCreds['verify-ssl-peer'], $ipskISEDB);
-					$ersCreds = "";
-					$endpointIdentityGroups = $ipskISEERS->createEndPoint($macAddress, $fullName, $description, $email, $psk);
-				}
 			}else{
 				$endpoint = $endpointQueryResult->fetch_assoc();
 				
