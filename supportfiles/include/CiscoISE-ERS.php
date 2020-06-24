@@ -82,6 +82,21 @@
 			}
 		}
 	
+		function getEndPointGroupByName($endpointGroupName){
+						
+			$uriPath = "/ers/config/identitygroup/name/".$endpointGroupName;
+			
+			$headerArray = $this->ersRestContentTypeHeader;
+				
+			$apiSession = $this->restCall($uriPath, "GET", $headerArray, true);
+			
+			if($apiSession["http_code"] == 200){
+				return $apiSession["body"];
+			}else{
+				return false;
+			}
+		}
+
 		function getEndPointIdentityGroups($pageSize = null, $page = null){
 			
 			if($pageSize != null || $page != null){
@@ -506,7 +521,40 @@
 				return false;
 			}
 		}
-		
+
+		function createEndPoint($macAddress, $fullName, $description, $email, $psk){
+			$uriPath = "/ers/config/endpoint";
+			$endpointDetails = '"ERSEndPoint": {
+				"name": "name",
+				"description": "'.$description.'",
+				"mac": "'.$macAddress.'",
+				"staticProfileAssignment": false,
+				"staticGroupAssignment": false,
+				"portalUser": "'.$fullName.'",
+				"customAttributes": {
+				  "customAttributes": {
+					"psk": "'.$psk.'",
+					"email": "'.$email.'"
+				  }
+				}';
+			$headerArray = $this->ersRestContentTypeHeader;
+			
+			$data = json_encode($endpointDetails);
+			$apiSession = $this->restCall($uriPath, "POST", $headerArray, true, $data);
+			
+			if($apiSession["http_code"] == 201){
+				return true;
+			}else{
+				if($this->iPSKManagerClass){
+					//LOG::Entry
+					$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
+					$logMessage = "API-REQUEST:FAILURE[create_ise_EndPoint_failure];";
+					$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+				}
+				
+				return false;
+			}
+		}
 		function createCaptivePortalAuthzProfile($profileName, $profileDescription, $portalUrl){
 			
 			if(!$this->check_ifAuthZProfileExists($profileName)){
