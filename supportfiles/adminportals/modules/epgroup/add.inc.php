@@ -102,7 +102,7 @@ $htmlbody = <<<HTML
 			$("#epGroupSelectNameDiv").show();
 			var dropdown = $('#epGroupNameSel');
 			dropdown.empty();
-			dropdown.append('<option selected="false" disabled>Select an Option </option>');
+			dropdown.append('<option selected="false" disabled>Select an endpoint group</option>');
 			dropdown.prop('selectedIndex', 0);
 			$.ajax({
 				url: "ajax/getdata.php",
@@ -136,6 +136,10 @@ $htmlbody = <<<HTML
 	
 		myitter += 1;
 
+	});
+
+	$('#epGroupNameSel').change(function(){
+		$('epGroupName').val($(this).val());
 	});
 
 	$("#showpassword").on('click', function(event) {
