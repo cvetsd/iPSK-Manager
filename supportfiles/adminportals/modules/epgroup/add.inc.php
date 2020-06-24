@@ -102,7 +102,7 @@ $htmlbody = <<<HTML
 			$("#epGroupSelectNameDiv").show();
 			var dropdown = $('#epGroupNameSel');
 			dropdown.empty();
-			dropdown.append('<option selected="false" disabled>Select an Option>');
+			dropdown.append('<option selected="false" disabled>Select an Option </option>');
 			dropdown.prop('selectedIndex', 0);
 			$.ajax({
 				url: "ajax/getdata.php",
@@ -114,7 +114,11 @@ $htmlbody = <<<HTML
 				type: "POST",
 				dataType: "html",
 				success: function (data) {
-					dropdown.append($('<option></option>').attr('value', data).text(data));
+					var myarray = JSON.parse(data);
+					myarray.forEach(function(myvalue) {
+						dropdown.append($('<option></option>').attr('value', myvalue).text(myvalue));
+					});
+					
 				},
 				error: function (xhr, status) {
 					dropdown.append($('<option></option>').attr('value', "unable to fetch ISE groups").text("unable to fetch ISE groups"));
