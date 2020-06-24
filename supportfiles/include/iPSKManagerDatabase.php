@@ -782,7 +782,6 @@
 		function getISEERSSettings($instanceId = 0){
 			if($this->encryptionKey != ""){
 				$query = "SELECT * from settings WHERE settingClass='ise-ers-credentials' AND page='global' AND optionIndex='".$instanceId."'";
-			
 				$queryResult = $this->dbConnection->query($query);
 				
 				if($queryResult){
@@ -1739,6 +1738,18 @@
 					return $this->dbConnection->insert_id;
 				}else{
 					return false;
+				}
+
+				$ersCreds = $ipskISEDB->getISEERSSettings();
+				if($ersCreds['enabled'])
+				{
+					if(!isset($ersCreds['verify-ssl-peer']))
+					{
+						$ersCreds['verify-ssl-peer'] = true;
+					}
+					$ipskISEERS = new CiscoISEERSRestAPI($ersCreds['ersHost'], $ersCreds['ersUsername'], $ersCreds['ersPassword'], $ersCreds['verify-ssl-peer'], $ipskISEDB);
+					$ersCreds = "";
+					$endpointIdentityGroups = $ipskISEERS->createEndPoint($macAddress, $fullName, $description, $email, $psk);
 				}
 			}else{
 				$endpoint = $endpointQueryResult->fetch_assoc();
@@ -2851,7 +2862,9 @@
 			}else{
 				$payloadData = '';
 			}
-				
+			if (!isset($_SESSION['sessionID'])){
+				$_SESSION['sessionID'] = 'emptysession';
+			}
 			$query = sprintf("INSERT INTO `logging` (`sessionID`, `fileName`, `functionName`, `className`,`classMethodName`, `lineNumber`, `message`, `logDataPayload`) VALUES('%s','%s','%s','%s','%s',%d,'%s','%s')", $_SESSION['sessionID'], $filename, $functionName, $className, $classMethodName, $lineNumber, $this->dbConnection->real_escape_string($message), $this->dbConnection->real_escape_string($payloadData));
 			
 			
