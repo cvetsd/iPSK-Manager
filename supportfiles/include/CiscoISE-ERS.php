@@ -52,7 +52,7 @@
 			return $this->ersRestContentType;
 		}		
 		
-		function getEndPointbyMac($macAddress){
+		function getEndPointbyMacOld($macAddress){
 						
 			$uriPath = "/ers/config/endpoint?filter=mac.EQ.".$macAddress;
 			
@@ -577,7 +577,7 @@
 			}
 		}
 
-		function updateEndPoint($macAddress, $fullName, $description, $email, $psk, $expirationDate, $createdBy){
+		function updateEndPointGroupAssociation($macAddress, $fullName, $description, $email, $psk, $expirationDate, $createdBy){
 			$uriPath = "/ers/config/endpoint";
 			$endpoint = getEndPointByMac($macAddress);
 			print_r("\n$endpoint");
