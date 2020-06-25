@@ -124,7 +124,7 @@
 					{
 						$myGroupName = $ipskISEDB->getEndpointGroupById($sanitizedInput['associationGroup']);
 						error_log("the Group name: ".$myGroupName,3,"/tmp/mylogger.txt");
-						print("the Group name: ".$myGroupName);
+						print("the Group name: ".$myGroupName["groupName"]);
 						if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $sanitizedInput['associationGroup'])){
 
 							//LOG::Entry
