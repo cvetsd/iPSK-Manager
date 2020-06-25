@@ -580,6 +580,8 @@
 			$endpointJson = json_encode($endpoint,true);
 			$endpointArray = json_decode($endpointJson);
 			print_r("<html><br>endpoint array:<br>".$endpointArray."<br>");
+			print_r("<html><br>endpoint:<br>".$endpoint."<br>");
+			print_r("<html><br>endpoint json:<br>".$endpointJson."<br>");
 			$x = 0;
 			foreach($endpointArray as $item){
 				print_r("<br>Item $x: $item<br>");
