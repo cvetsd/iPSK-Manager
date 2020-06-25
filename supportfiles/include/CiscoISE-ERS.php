@@ -566,20 +566,18 @@
 				print_r($apiSession);
 				return $apiSession->data;
 			}else{
-				if($this->iPSKManagerClass){
-					//LOG::Entry
-					$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
-					$logMessage = "API-REQUEST:FAILURE[create_ise_EndPoint_failure];";
-					$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
-				}
-				
+				//LOG::Entry
+				$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
+				$logMessage = "API-REQUEST:FAILURE[create_ise_EndPoint_failure];";
+				$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+			
 				return false;
 			}
 		}
 
 		function updateEndPointGroupAssociation($macAddress, $associationGroup){
 			$uriPath = "/ers/config/endpoint";
-			$endpoint = getEndPointByMac($macAddress);
+			$endpoint = $this->getEndPointByMac($macAddress);
 			print_r("\n$endpoint");
 			$endpointDetails = '{"ERSEndPoint": {
 				"name": "name",
