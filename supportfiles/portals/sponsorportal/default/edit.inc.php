@@ -65,8 +65,13 @@
 				$ipskISEDB->deleteEndpointAssociationbyId($sanitizedInput['id']);
 				$ipskISEDB->addEndpointAssociation($endpoint['endpointId'], $endpoint['macAddress'], $sanitizedInput['associationGroup'], $_SESSION['logonSID']);
 				$ersCreds = $ipskISEDB->getISEERSSettings();
+				$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+				$logMessage = "SUBMIT:DEBUG;ACTION:SPONSOREDIT;METHOD:EDIT-ENDPOINT-ASSOCIATION-ISE;SID:".$_SESSION['logonSID'].";";
+				$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 				if($ersCreds['enabled'])
 				{
+					$logMessage = "SUBMIT:DEBUG;ACTION:SPONSOREDIT;METHOD:EDIT-ENDPOINT-ASSOCIATION-ISE;SID:".$_SESSION['logonSID']."ersCreds:enabled;";
+					$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 					$myGroup = $ipskISEDB->getEndpointGroupById($sanitizedInput['associationGroup']);
 
 					if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $myGroup["groupName"])){
