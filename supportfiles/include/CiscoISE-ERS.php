@@ -582,6 +582,7 @@
 			print_r("<html><br>endpoint array:<br>".$endpointArray."<br>");
 			print_r("<html><br>endpoint:<br>".$endpoint."<br>");
 			print_r("<html><br>endpoint json:<br>".$endpointJson."<br>");
+			print("<br>[SearchResult][resources][id]<br>".$endpointArray["SearchResult"]["resources"]["id"]."<br>");
 			$x = 0;
 			foreach($endpointArray as $item){
 				print_r("<br>Item $x: $item<br>");
