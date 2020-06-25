@@ -540,7 +540,7 @@
 			$headerArray = $this->ersRestContentTypeHeader;
 			print("creating endpoint");
 			$data = json_encode($endpointDetails);
-			$apiSession = $this->restCall($uriPath, "POST", $headerArray, true, $data);
+			$apiSession = $this->restCall($uriPath, "POST", $headerArray, true, $endpointDetails);
 			
 			if($apiSession["http_code"] == 201){
 				return true;
