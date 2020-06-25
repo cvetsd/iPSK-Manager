@@ -534,7 +534,7 @@
 				"customAttributes": {
 					"psk": "'.$psk.'",
 					"email": "'.$email.'"
-				}}';
+				}}}';
 
 			print("\n$endpointDetails\n");
 			$headerArray = $this->ersRestContentTypeHeader;
