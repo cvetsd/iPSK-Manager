@@ -176,6 +176,12 @@
 			die();
 		}
 	}elseif(isset($_GET['portal'])){
+
+		//LOG::Entry
+		$logData = $ipskISEDB->generateLogData(Array("filename"=>$filename), Array("sanitizedInput"=>$sanitizedInput));
+		$logMessage = "REQUEST:FAILURE[get_portal_instance];ACTION:PORTAL:".$_GET['portal'].";HOSTNAME:".$_SERVER['SERVER_NAME'].";GUID:".$portalId.";";
+		$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+
 		if(isset($_SESSION['portalSettings'])){
 			$filename = "../supportfiles/portals/".$_SESSION['portalSettings']['portalModule']."/commonfiles/".$_GET['portal'];
 			if(file_exists($filename)){
