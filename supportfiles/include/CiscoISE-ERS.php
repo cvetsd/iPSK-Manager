@@ -578,9 +578,10 @@
 			$uriPath = "/ers/config/endpoint/";
 			$endpoint = $this->getEndPointByMac($macAddress);
 			$endpointArray = json_decode($endpoint,true);
+			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
 			$group = $this->getEndPointGroupByName($associationGroup);
 			$groupArray = json_decode($group,true);
-			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
+			print_r($groupArray);
 			$endpointDetails = '{"ERSEndPoint": {
 				"groupId": "'.$groupArray["IdentityGroup"]["id"].'",
 				"staticGroupAssignment": true

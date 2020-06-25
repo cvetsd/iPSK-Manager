@@ -64,6 +64,21 @@
 				$ipskISEDB->updateEndpoint($endpoint['endpointId'],$sanitizedInput['fullName'], $sanitizedInput['endpointDescription'], $sanitizedInput['emailAddress'], $_SESSION['logonSID'], $randomPSK, $duration);
 				$ipskISEDB->deleteEndpointAssociationbyId($sanitizedInput['id']);
 				$ipskISEDB->addEndpointAssociation($endpoint['endpointId'], $endpoint['macAddress'], $sanitizedInput['associationGroup'], $_SESSION['logonSID']);
+				$ersCreds = $ipskISEDB->getISEERSSettings();
+				if($ersCreds['enabled'])
+				{
+					if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $sanitizedInput['associationGroup'])){
+						//LOG::Entry
+						$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+						$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORCREATE;METHOD:EDIT-ENDPOINT-ASSOCIATION-ISE;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
+						$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+					}else{
+						//LOG::Entry
+						$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+						$logMessage = "REQUEST:FAILURE;ACTION:SPONSORCREATE;METHOD:EDIT-ENDPOINT-ASSOCIATION-ISE;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
+						$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+					}
+				}
 				
 			}elseif($sanitizedInput['editPSK'] == 1){
 				$endPointPermissions = $ipskISEDB->getEndPointAssociationPermissions($sanitizedInput['id'],$_SESSION['authorizationGroups'], $_SESSION['portalSettings']['id']);
