@@ -577,13 +577,13 @@
 		function updateEndPointGroupAssociation($macAddress, $associationGroup){
 			$uriPath = "/ers/config/endpoint";
 			$endpoint = $this->getEndPointByMac($macAddress);
-			print("<html><br>Json Validate result: ".json_validate($endpoint)."1<br>1.1</html>");
+			print("<html>01.01<br>Json Validate result: ".json_validate($endpoint)."1<br>1.1</html>");
 			$endpointJson = json_decode($endpoint,true);
 			$endpointArray = json_encode($endpointJson);
-			print_r("<html><br>endpoint array: ".var_dump($endpointArray)."2<br>2.2</html>");
-			print_r("<html><br>endpoint: ".var_dump($endpoint)."3<br>3.3</html>");
-			print_r("<html><br>endpoint json: ".var_dump($endpointJson)."4<br>4.4</html>");
-			print("<br>[SearchResult endpointJson]: ".$endpointJson["SearchResult"]."5<br>5.5</html>");
+			print_r("<html>02.02<br>endpoint array: ".var_dump($endpointArray)."2<br>2.2</html>");
+			print_r("<html>03.03<br>endpoint: ".var_dump($endpoint)."3<br>3.3</html>");
+			print_r("<html>04.04<br>endpoint json: ".var_dump($endpointJson)."4<br>4.4</html>");
+			print("<html>05.05<br>[SearchResult endpointJson]: ".$endpointJson["SearchResult"]."5<br>5.5</html>");
 			$x = 0;
 			foreach($endpointArray as $item){
 				print_r("<br>Item $x: $item<br>");
