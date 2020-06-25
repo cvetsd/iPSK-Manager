@@ -85,15 +85,12 @@
 		function getEndPointGroupByName($endpointGroupName){
 						
 			$uriPath = "/ers/config/identitygroup/name/".$endpointGroupName;
-			print("<html><br>about to get: $uriPath<br>");
+
 			$headerArray = $this->ersRestContentTypeHeader;
 				
 			$apiSession = $this->restCall($uriPath, "GET", $headerArray, true);
 			
-			ini_set("log_errors", 1);
-			ini_set("error_log", "/tmp/php-error.log");
-			error_log("logging an error");
-			error_log($apiSession);
+			print("<html><br>apiSession object:".var_dump($apiSession));
 			if($apiSession["http_code"] == 200){
 				return $apiSession["body"];
 			}else{
@@ -583,7 +580,6 @@
 			$endpoint = $this->getEndPointByMac($macAddress);
 			$endpointArray = json_decode($endpoint,true);
 			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
-			print("<html><br>Authorized groups: ".$_SESSION['authorizedEPGroups']);
 			$group = $this->getEndPointGroupByName($associationGroup);
 			print_r("<html><br>Group response:".var_dump($group));
 			$groupArray = json_decode($group,true);
