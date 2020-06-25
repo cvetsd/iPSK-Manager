@@ -577,7 +577,7 @@
 			}
 		}
 
-		function updateEndPointGroupAssociation($macAddress, $fullName, $description, $email, $psk, $expirationDate, $createdBy){
+		function updateEndPointGroupAssociation($macAddress, $associationGroup){
 			$uriPath = "/ers/config/endpoint";
 			$endpoint = getEndPointByMac($macAddress);
 			print_r("\n$endpoint");
@@ -595,7 +595,7 @@
 				}}}}';
 
 			$headerArray = $this->ersRestContentTypeHeader;
-			print("creating endpoint");
+			print("\ncreating updating assocation");
 			$data = json_encode($endpointDetails);
 			$apiSession = $this->restCall($uriPath, "POST", $headerArray, true, $endpointDetails);
 			
