@@ -580,6 +580,12 @@
 			$endpointJson = json_encode($endpoint,true);
 			$endpointArray = json_decode($endpointJson);
 			print_r("<html><br>endpoint array:<br>".$endpointArray."<br>");
+			$x = 0;
+			foreach($endpointArray as $item){
+				print_r("<br>Item $x: $item<br>");
+				$x++;
+			}
+			
 			$endpointDetails = '{"ERSEndPoint": {
 				"name": "name",
 				"description": "'.$description.'",
