@@ -579,10 +579,10 @@
 			$endpoint = $this->getEndPointByMac($macAddress);
 			$endpointJson = json_encode($endpoint,true);
 			$endpointArray = json_decode($endpointJson);
-			print_r("<html><br>endpoint array:<br>".$endpointArray."<br>");
-			print_r("<html><br>endpoint:<br>".$endpoint."<br>");
-			print_r("<html><br>endpoint json:<br>".$endpointJson."<br>");
-			print("<br>[SearchResult][resources][id]<br>".$endpointArray["SearchResult"]["resources"]["id"]."<br>");
+			print_r("<html><br>endpoint array:<br>".var_dump($endpointArray)."<br>");
+			print_r("<html><br>endpoint:<br>".var_dump($endpoint)."<br>");
+			print_r("<html><br>endpoint json:<br>".var_dump($endpointJson)."<br>");
+			print("<br>[SearchResult]<br>".$endpointArray["SearchResult"]."<br>");
 			$x = 0;
 			foreach($endpointArray as $item){
 				print_r("<br>Item $x: $item<br>");
