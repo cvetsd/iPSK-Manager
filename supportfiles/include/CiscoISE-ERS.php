@@ -563,8 +563,7 @@
 			$apiSession = $this->restCall($uriPath.$getQueryString, "GET", $headerArray, true);
 			
 			if($apiSession["http_code"] == 200){
-				print("<br>".var_dump($apiSession)."<br>");
-				return $apiSession->data;
+				return $apiSession["body"];
 			}else{
 				//LOG::Entry
 				$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
