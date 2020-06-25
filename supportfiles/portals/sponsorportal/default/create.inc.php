@@ -87,6 +87,17 @@
 			$endpointId = $ipskISEDB->addEndpoint($sanitizedInput['macAddress'],$sanitizedInput['fullName'], $sanitizedInput['endpointDescription'], $sanitizedInput['emailAddress'], $randomPSK, $duration, $_SESSION['logonSID']);
 			
 			if($endpointId){
+				$ersCreds = $ipskISEDB->getISEERSSettings();
+				if($ersCreds['enabled'])
+				{
+					if(!isset($ersCreds['verify-ssl-peer']))
+					{
+						$ersCreds['verify-ssl-peer'] = true;
+					}
+					$ipskISEERS = new CiscoISEERSRestAPI($ersCreds['ersHost'], $ersCreds['ersUsername'], $ersCreds['ersPassword'], $ersCreds['verify-ssl-peer'], $ipskISEDB);
+					$ersCreds = "";
+					$endpointIdentityGroups = $ipskISEERS->createEndPoint($sanitizedInput['macAddress'],$sanitizedInput['fullName'], $sanitizedInput['endpointDescription'], $sanitizedInput['emailAddress'], $randomPSK, $duration, $_SESSION['logonSID']);
+				}
 				//LOG::Entry
 				$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
 				$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORCREATE;METHOD:ADD-ENDPOINT;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";

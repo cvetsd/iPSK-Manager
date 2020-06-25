@@ -522,7 +522,7 @@
 			}
 		}
 
-		function createEndPoint($macAddress, $fullName, $description, $email, $psk){
+		function createEndPoint($macAddress, $fullName, $description, $email, $psk, $expirationDate, $createdBy){
 			$uriPath = "/ers/config/endpoint";
 			$endpointDetails = '"ERSEndPoint": {
 				"name": "name",
@@ -530,7 +530,7 @@
 				"mac": "'.$macAddress.'",
 				"staticProfileAssignment": false,
 				"staticGroupAssignment": false,
-				"portalUser": "'.$fullName.'",
+				"portalUser": "'.$createdBy.'",
 				"customAttributes": {
 				  "customAttributes": {
 					"psk": "'.$psk.'",
@@ -538,7 +538,7 @@
 				  }
 				}';
 			$headerArray = $this->ersRestContentTypeHeader;
-			
+			print("creating endpoint");
 			$data = json_encode($endpointDetails);
 			$apiSession = $this->restCall($uriPath, "POST", $headerArray, true, $data);
 			
