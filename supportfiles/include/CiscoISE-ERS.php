@@ -567,7 +567,7 @@
 			}else{
 				//LOG::Entry
 				$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
-				$logMessage = "API-REQUEST:FAILURE[create_ise_EndPoint_failure];";
+				$logMessage = "API-REQUEST:FAILURE[get_endpoint_by_mac];";
 				$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 			
 				return false;

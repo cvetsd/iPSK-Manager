@@ -74,7 +74,7 @@
 					$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 					$myGroup = $ipskISEDB->getEndpointGroupById($sanitizedInput['associationGroup']);
 
-					if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $myGroup["groupName"])){
+					if($ipskISEERS->updateEndPointGroupAssociation($endpoint['macAddress'], $myGroup["groupName"])){
 						//LOG::Entry
 						$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
 						$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORCREATE;METHOD:EDIT-ENDPOINT-ASSOCIATION-ISE;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
