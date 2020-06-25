@@ -579,7 +579,7 @@
 			$endpoint = $this->getEndPointByMac($macAddress);
 			$endpointJson = json_encode($endpoint,true);
 			$endpointArray = json_decode($endpointJson);
-			print("<html><br>endpoint array:<br>".var_dump($endpointArray)."<br>");
+			print_r("<html><br>endpoint array:<br>".$endpointArray."<br>");
 			$endpointDetails = '{"ERSEndPoint": {
 				"name": "name",
 				"description": "'.$description.'",
