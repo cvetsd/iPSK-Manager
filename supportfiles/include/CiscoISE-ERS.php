@@ -585,9 +585,9 @@
 			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
 			print("<html><br>Authorized groups: ".$_SESSION['authorizedEPGroups']);
 			$group = $this->getEndPointGroupByName($associationGroup);
-			print_r("<html>Group response: $group");
+			print_r("<html><br>Group response:".var_dump($group));
 			$groupArray = json_decode($group,true);
-			print_r($groupArray);
+			print_r("<html><br>grouparray: ".$groupArray);
 			$endpointDetails = '{"ERSEndPoint": {
 				"groupId": "'.$groupArray["IdentityGroup"]["id"].'",
 				"staticGroupAssignment": true
