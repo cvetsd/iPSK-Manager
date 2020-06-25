@@ -563,6 +563,7 @@
 			$apiSession = $this->restCall($uriPath.$getQueryString, "GET", $headerArray, true);
 			
 			if($apiSession["http_code"] == 200){
+				print_r("<br>$apiSession->data<br>");
 				return $apiSession->data;
 			}else{
 				//LOG::Entry
