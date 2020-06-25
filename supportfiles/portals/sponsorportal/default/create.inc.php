@@ -122,10 +122,8 @@
 					$ersCreds = $ipskISEDB->getISEERSSettings();
 					if($ersCreds['enabled'])
 					{
-						$myGroupName = $ipskISEDB->getEndpointGroupById($sanitizedInput['associationGroup']);
-						error_log("the Group name: ".$myGroupName,3,"/tmp/mylogger.txt");
-						print("the Group name: ".$myGroupName["groupName"]);
-						if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $sanitizedInput['associationGroup'])){
+						$myGroup = $ipskISEDB->getEndpointGroupById($sanitizedInput['associationGroup']);
+						if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $myGroup["groupName"])){
 
 							//LOG::Entry
 							$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
