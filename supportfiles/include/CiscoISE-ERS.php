@@ -578,7 +578,7 @@
 			$uriPath = "/ers/config/endpoint";
 			$endpoint = $this->getEndPointByMac($macAddress);
 			$endpointArray = json_encode($endpoint);
-			print_r("<html><br>endpoint array:<br>".$endpointArray);
+			print("<html><br>endpoint array:<br>".var_dump($endpointArray)."<br>");
 			$endpointDetails = '{"ERSEndPoint": {
 				"name": "name",
 				"description": "'.$description.'",
