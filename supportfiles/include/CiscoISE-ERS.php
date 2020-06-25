@@ -585,8 +585,8 @@
 			print_r("<html>04.04<br>endpoint json: ".var_dump($endpointJson)."4<br>4.4</html>");
 			print("<html>05.05<br>[SearchResult endpointJson]: ".$endpointJson["SearchResult"]."5<br>5.5</html>");
 			$x = 0;
-			foreach($endpointArray as $item){
-				print_r("<br>Item $x: $item<br>");
+			foreach($endpointJson as $item){
+				print_r("<html><br>Item $x: $item<br>");
 				$x++;
 			}
 			
