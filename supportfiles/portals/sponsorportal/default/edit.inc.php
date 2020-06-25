@@ -67,7 +67,9 @@
 				$ersCreds = $ipskISEDB->getISEERSSettings();
 				if($ersCreds['enabled'])
 				{
-					if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $sanitizedInput['associationGroup'])){
+					$myGroup = $ipskISEDB->getEndpointGroupById($sanitizedInput['associationGroup']);
+
+					if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $myGroup["groupName"])){
 						//LOG::Entry
 						$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
 						$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORCREATE;METHOD:EDIT-ENDPOINT-ASSOCIATION-ISE;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
