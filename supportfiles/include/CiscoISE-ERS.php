@@ -90,7 +90,6 @@
 				
 			$apiSession = $this->restCall($uriPath, "GET", $headerArray, true);
 			
-			print("<html><br>apiSession object:".var_dump($apiSession));
 			if($apiSession["http_code"] == 200){
 				return $apiSession["body"];
 			}else{
@@ -583,9 +582,9 @@
 			$group = $this->getEndPointGroupByName($associationGroup);
 			print_r("<html><br>Group response:".var_dump($group));
 			$groupArray = json_decode($group,true);
-			print_r("<html><br>grouparray: ".$groupArray);
+			print_r("<html><br>grouparray: ".var_dump($groupArray));
 			$endpointDetails = '{"ERSEndPoint": {
-				"groupId": "'.$groupArray["IdentityGroup"]["id"].'",
+				"groupId": "'.$groupArray["EndPointGroup"]["id"].'",
 				"staticGroupAssignment": true
 				}}';
 
