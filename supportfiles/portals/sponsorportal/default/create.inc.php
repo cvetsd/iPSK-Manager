@@ -119,6 +119,7 @@
 					$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORCREATE;METHOD:ADD-ENDPOINT-ASSOCIATION;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
 					$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 					
+					$ersCreds = $ipskISEDB->getISEERSSettings();
 					if($ersCreds['enabled'])
 					{
 						if($ipskISEERS->updateEndPointGroupAssociation($sanitizedInput['macAddress'], $sanitizedInput['associationGroup'])){
