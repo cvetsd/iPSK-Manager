@@ -580,6 +580,7 @@
 			$endpointArray = json_decode($endpoint,true);
 			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
 			$group = $this->getEndPointGroupByName($associationGroup);
+			print_r("<html>Group response: $group");
 			$groupArray = json_decode($group,true);
 			print_r($groupArray);
 			$endpointDetails = '{"ERSEndPoint": {
