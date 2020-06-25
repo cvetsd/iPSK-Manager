@@ -85,10 +85,11 @@
 		function getEndPointGroupByName($endpointGroupName){
 						
 			$uriPath = "/ers/config/identitygroup/name/".$endpointGroupName;
-			
+			print("<html><br>about to get: $uriPath<br>");
 			$headerArray = $this->ersRestContentTypeHeader;
 				
 			$apiSession = $this->restCall($uriPath, "GET", $headerArray, true);
+			print_r("<html><br>This is the apiSession: ".var_dump($apiSession));
 			
 			ini_set("log_errors", 1);
 			ini_set("error_log", "/tmp/php-error.log");
