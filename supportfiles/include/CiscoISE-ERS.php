@@ -84,7 +84,7 @@
 	
 		function getEndPointGroupByName($endpointGroupName){
 						
-			$uriPath = "/ers/config/identitygroup/name/".$endpointGroupName;
+			$uriPath = "/ers/config/endpointgroup/name/".$endpointGroupName;
 
 			$headerArray = $this->ersRestContentTypeHeader;
 				
