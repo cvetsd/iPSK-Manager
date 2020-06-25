@@ -589,17 +589,19 @@
 				}}';
 
 			$headerArray = $this->ersRestContentTypeHeader;
-			print("\nupdating assocation");
 			$data = json_encode($endpointDetails);
 			$apiSession = $this->restCall($uriPath, "PUT", $headerArray, true, $endpointDetails);
-			
-			if($apiSession["http_code"] == 201){
+			//LOG::Entry
+			$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
+			$logMessage = "API-REQUEST:DEBUG[update_ise_EndPoint_group_assignment];endpointDetails:".var_dump($data).";";
+			$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+			if($apiSession["http_code"] == 200){
 				return true;
 			}else{
 				if($this->iPSKManagerClass){
 					//LOG::Entry
 					$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
-					$logMessage = "API-REQUEST:FAILURE[create_ise_EndPoint_failure];";
+					$logMessage = "API-REQUEST:FAILURE[update_ise_EndPoint_Group_Association_failure];";
 					$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 				}
 				
