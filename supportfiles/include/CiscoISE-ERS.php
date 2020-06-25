@@ -583,7 +583,7 @@
 			print_r("<html>02.02<br>endpoint array: ".var_dump($endpointArray)."2<br>2.2</html>");
 			print_r("<html>03.03<br>endpoint: ".var_dump($endpoint)."3<br>3.3</html>");
 			print_r("<html>04.04<br>endpoint json: ".var_dump($endpointJson)."4<br>4.4</html>");
-			print("<html>05.05<br>[SearchResult endpointJson]: ".$endpointJson["SearchResult"]."5<br>5.5</html>");
+			print("<html>05.05<br>[SearchResult resources 0 id endpointJson]: ".$endpointJson["SearchResult"]["resources"][0]["id"]."5<br>5.5</html>");
 			$x = 0;
 			$y = 0;
 			$z = 0;
