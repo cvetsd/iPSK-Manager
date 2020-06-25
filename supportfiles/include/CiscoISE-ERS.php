@@ -577,10 +577,8 @@
 		function updateEndPointGroupAssociation($macAddress, $associationGroup){
 			$uriPath = "/ers/config/endpoint";
 			$endpoint = $this->getEndPointByMac($macAddress);
-			print_r($endpoint);
-			print_r("endpoint body: ".$endpoint["body"]);
-			$endpointId = json_decode($endpoint["body"]);
-			print_r("EndpointID: $endpointId");
+			$endpointArray = json_encode($endpoint);
+			print_r("<html><br>endpoint array:<br>".$endpointArray);
 			$endpointDetails = '{"ERSEndPoint": {
 				"name": "name",
 				"description": "'.$description.'",
