@@ -37,9 +37,10 @@
 		
 		if($endpointPermissions){
 			if($endpointPermissions[0]['advancedPermissions'] & 64){
+				$endPointAssociation = $ipskISEDB->getEndPointAssociationById($sanitizedInput['id']);
 				//LOG::Entry
 				$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
-				$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORDELETE;METHOD:DELETE-ENDPOINT;MAC:".$sanitizedInput['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
+				$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORDELETE;METHOD:DELETE-ENDPOINT;ID:".$endPointAssociation['endpointId'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
 				$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 				$myEndPoint = $ipskISEDB->getEndpointById($endPointAssociation['endpointId']);
 				$ersCreds = $ipskISEDB->getISEERSSettings();
@@ -54,7 +55,6 @@
 						$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORDELETE;METHOD:DELETE-ENDPOINT-ISE;MAC:".$myEndPoint['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
 						$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
 						//delete from database if ISE delete is succesful
-						$endPointAssociation = $ipskISEDB->getEndPointAssociationById($sanitizedInput['id']);
 						$ipskISEDB->deleteEndpointAssociationbyId($sanitizedInput['id']);
 						$ipskISEDB->deleteEndpointById($endPointAssociation['endpointId']);
 					}else{
