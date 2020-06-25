@@ -575,49 +575,21 @@
 		}
 
 		function updateEndPointGroupAssociation($macAddress, $associationGroup){
-			$uriPath = "/ers/config/endpoint";
+			$uriPath = "/ers/config/endpoint/";
 			$endpoint = $this->getEndPointByMac($macAddress);
-			print("<html>01.01<br>Json Validate result: ".json_validate($endpoint)."1<br>1.1</html>");
-			$endpointJson = json_decode($endpoint,true);
-			$endpointArray = json_encode($endpointJson);
-			print_r("<html>02.02<br>endpoint array: ".var_dump($endpointArray)."2<br>2.2</html>");
-			print_r("<html>03.03<br>endpoint: ".var_dump($endpoint)."3<br>3.3</html>");
-			print_r("<html>04.04<br>endpoint json: ".var_dump($endpointJson)."4<br>4.4</html>");
-			print("<html>05.05<br>[SearchResult resources 0 id endpointJson]: ".$endpointJson["SearchResult"]["resources"][0]["id"]."5<br>5.5</html>");
-			$x = 0;
-			$y = 0;
-			$z = 0;
-			foreach($endpointJson as $item0){
-				print_r("<html><br>Item x as $x: $item0<br>");
-				$x++;
-				foreach($item0 as $item1){
-					print_r("<html><br>Item y as $y: $item1<br>");
-					$y++;
-					foreach($item1 as $item2){
-						print_r("<html><br>Item z as $z: $item2<br>");
-						$z++;
-					}
-				}
-
-			}
-			
+			$endpointArray = json_decode($endpoint,true);
+			$group = $this->getEndPointGroupByName($associationGroup);
+			$groupArray = json_decode($group,true);
+			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
 			$endpointDetails = '{"ERSEndPoint": {
-				"name": "name",
-				"description": "'.$description.'",
-				"mac": "'.$macAddress.'",
-				"staticProfileAssignment": false,
-				"staticGroupAssignment": false,
-				"portalUser": "'.$createdBy.'",
-				"customAttributes": {
-					"customAttributes": {
-					"psk": "'.$psk.'",
-					"email": "'.$email.'"
-				}}}}';
+				"groupId": "'.$groupArray["IdentityGroup"]["id"].'",
+				"staticGroupAssignment": true
+				}}';
 
 			$headerArray = $this->ersRestContentTypeHeader;
 			print("\nupdating assocation");
 			$data = json_encode($endpointDetails);
-			$apiSession = $this->restCall($uriPath, "POST", $headerArray, true, $endpointDetails);
+			$apiSession = $this->restCall($uriPath, "PUT", $headerArray, true, $endpointDetails);
 			
 			if($apiSession["http_code"] == 201){
 				return true;
