@@ -652,7 +652,7 @@
 			
 		}
 
-		function DeleteEndPoint($macAddress){
+		function DeleteEndPointByMac($macAddress){
 			$uriPath = "/ers/config/endpoint/";
 			$endpoint = $this->getEndPointByMac($macAddress);
 			$endpointArray = json_decode($endpoint,true);
