@@ -90,6 +90,10 @@
 				
 			$apiSession = $this->restCall($uriPath, "GET", $headerArray, true);
 			
+			ini_set("log_errors", 1);
+			ini_set("error_log", "/tmp/php-error.log");
+			error_log("logging an error");
+			error_log($apiSession);
 			if($apiSession["http_code"] == 200){
 				return $apiSession["body"];
 			}else{
