@@ -1053,6 +1053,23 @@
 			}
 		}
 
+		function getEndpointById($endpointId){
+			$query = "SELECT endpoints.macAddress, endpoints.fullName, endpoints.id as endpointId, endpoints.description, endpoints.emailAddress, endpoints.pskValue, endpoints.createdBy FROM endpoints WHERE endpoints.id = '$endpointId' LIMIT 1";
+			
+			$queryResult = $this->dbConnection->query($query);
+			
+			if($queryResult){
+				if($queryResult->num_rows > 0){
+					$row = $queryResult->fetch_assoc();
+					return $row;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}
+
 		function getEndpointsByAuthZPolicy($id){
 			$query = "SELECT endpoints.id, endpoints.macAddress, endpointGroups.authzTemplateId FROM `endpoints` INNER JOIN endpointAssociations ON endpoints.id = endpointAssociations.endpointId INNER JOIN endpointGroups ON endpointAssociations.epGroupId = endpointGroups.id WHERE endpointGroups.authzTemplateId = '$id'";
 			

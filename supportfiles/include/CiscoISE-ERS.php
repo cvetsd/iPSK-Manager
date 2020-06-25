@@ -651,5 +651,31 @@
 			}
 			
 		}
+
+		function DeleteEndPoint($macAddress){
+			$uriPath = "/ers/config/endpoint/";
+			$endpoint = $this->getEndPointByMac($macAddress);
+			$endpointArray = json_decode($endpoint,true);
+			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
+
+			$headerArray = $this->ersRestContentTypeHeader;
+			$apiSession = $this->restCall($uriPath, "DELETE", $headerArray, true, $endpointDetails);
+			//LOG::Entry
+			$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
+			$logMessage = "API-REQUEST-DELETE:DEBUG[Delete_EndPoint];deleteURI:".$uriPath.";";
+			$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+			if($apiSession["http_code"] == 204){
+				return true;
+			}else{
+				if($this->iPSKManagerClass){
+					//LOG::Entry
+					$logData = $this->iPSKManagerClass->generateLogData(Array("apiSession"=>$apiSession), Array("headerArray"=>$headerArray), Array("uriPath"=>$uriPath));
+					$logMessage = "API-REQUEST-DELETE:FAILURE[Delete_EndPoint];";
+					$this->iPSKManagerClass->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+				}
+				
+				return false;
+			}
+		}
 	}	
 ?>
