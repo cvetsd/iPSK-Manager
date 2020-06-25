@@ -524,7 +524,7 @@
 
 		function createEndPoint($macAddress, $fullName, $description, $email, $psk, $expirationDate, $createdBy){
 			$uriPath = "/ers/config/endpoint";
-			$endpointDetails = '"ERSEndPoint": {
+			$endpointDetails = '{"ERSEndPoint": {
 				"name": "name",
 				"description": "'.$description.'",
 				"mac": "'.$macAddress.'",
@@ -536,7 +536,7 @@
 					"psk": "'.$psk.'",
 					"email": "'.$email.'"
 				  }
-				}';
+				}}';
 
 			print("\n$endpointDetails\n");
 			$headerArray = $this->ersRestContentTypeHeader;
