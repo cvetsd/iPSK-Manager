@@ -580,10 +580,10 @@
 			print("<html><br>Json Validate result: ".json_validate($endpoint)."<br>");
 			$endpointJson = json_decode($endpoint,true);
 			$endpointArray = json_encode($endpointJson);
-			print_r("<html><br>endpoint array:<br>".var_dump($endpointArray)."<br>");
-			print_r("<html><br>endpoint:<br>".var_dump($endpoint)."<br>");
-			print_r("<html><br>endpoint json:<br>".var_dump($endpointJson)."<br>");
-			print("<br>[SearchResult]<br>".$endpointArray["SearchResult"]."<br>");
+			print_r("<html><br>endpoint array: ".var_dump($endpointArray)."<br>");
+			print_r("<html><br>endpoint: ".var_dump($endpoint)."<br>");
+			print_r("<html><br>endpoint json: ".var_dump($endpointJson)."<br>");
+			print("<br>[SearchResult endpointJson]: ".$endpointJson["SearchResult"]."<br>");
 			$x = 0;
 			foreach($endpointArray as $item){
 				print_r("<br>Item $x: $item<br>");
