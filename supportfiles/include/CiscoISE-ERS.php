@@ -537,6 +537,8 @@
 					"email": "'.$email.'"
 				  }
 				}';
+
+			print("\n$endpointDetails\n");
 			$headerArray = $this->ersRestContentTypeHeader;
 			print("creating endpoint");
 			$data = json_encode($endpointDetails);
