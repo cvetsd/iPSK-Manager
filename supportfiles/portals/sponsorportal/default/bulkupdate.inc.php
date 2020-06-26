@@ -85,9 +85,32 @@
 						if($endpointPermissions){
 							if($endpointPermissions[0]['advancedPermissions'] & 64){
 								$endPointAssociation = $ipskISEDB->getEndPointAssociationById($endpointIds[$epIdx]);
-																
-								$ipskISEDB->deleteEndpointAssociationbyId($endpointIds[$epIdx]);
-								$ipskISEDB->deleteEndpointById($endPointAssociation['endpointId']);
+								//LOG::Entry
+								$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+								$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORDELETE;METHOD:DELETE-ENDPOINT;ID:".$endPointAssociation['endpointId'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
+								$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+								$myEndPoint = $ipskISEDB->getEndpointById($endPointAssociation['endpointId']);
+								$ersCreds = $ipskISEDB->getISEERSSettings();
+								$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+								$logMessage = "DELETE:DEBUG;ACTION:SPONSORBULKDELETE;METHOD:DELETE-ENDPOINT-ISE;SID:".$_SESSION['logonSID'].";";
+								$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+								if($ersCreds['enabled'])
+								{
+									if($ipskISEERS->DeleteEndPointByMac($myEndPoint['macAddress'])){
+										//LOG::Entry
+										$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+										$logMessage = "REQUEST:SUCCESS;ACTION:SPONSORBULKDELETE;METHOD:DELETE-ENDPOINT-ISE;MAC:".$myEndPoint['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
+										$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+										//delete from database if ISE delete is succesful
+										$ipskISEDB->deleteEndpointAssociationbyId($endpointIds[$epIdx]);
+										$ipskISEDB->deleteEndpointById($endPointAssociation['endpointId']);
+									}else{
+										//LOG::Entry
+										$logData = $ipskISEDB->generateLogData(Array("sanitizedInput"=>$sanitizedInput));
+										$logMessage = "REQUEST:FAILURE;ACTION:SPONSORBULKDELETE;METHOD:DELETE-ENDPOINT-ISE;MAC:".$myEndPoint['macAddress'].";REMOTE-IP:".$_SERVER['REMOTE_ADDR'].";USERNAME:".$_SESSION['logonUsername'].";SID:".$_SESSION['logonSID'].";";
+										$ipskISEDB->addLogEntry($logMessage, __FILE__, __FUNCTION__, __CLASS__, __METHOD__, __LINE__, $logData);
+									}
+								}
 							}
 						}							
 					}
@@ -123,7 +146,7 @@ HTML;
 			<div class="modal-header shadow alert alert-danger">
 				<h5 class="modal-title font-weight-bold" id="modalLongTitle">Activate Endpoint's Access?</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
+				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
@@ -187,7 +210,7 @@ HTML;
 			<div class="modal-header shadow alert alert-danger">
 				<h5 class="modal-title font-weight-bold" id="modalLongTitle">Suspend Endpoint's Access?</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
+				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
@@ -251,7 +274,7 @@ HTML;
 			<div class="modal-header shadow alert alert-danger">
 				<h5 class="modal-title font-weight-bold" id="modalLongTitle">Delete Endpoint Association?</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
+				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
