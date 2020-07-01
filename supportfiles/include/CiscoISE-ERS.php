@@ -580,9 +580,9 @@
 			$endpointArray = json_decode($endpoint,true);
 			$uriPath = $uriPath.$endpointArray["SearchResult"]["resources"][0]["id"];
 			$group = $this->getEndPointGroupByName($associationGroup);
-			print_r("<html><br>Group response:".var_dump($group));
+			//print_r("<html><br>Group response:".var_dump($group));
 			$groupArray = json_decode($group,true);
-			print_r("<html><br>grouparray: ".var_dump($groupArray));
+			//print_r("<html><br>grouparray: ".var_dump($groupArray));
 			$endpointDetails = '{"ERSEndPoint": {
 				"groupId": "'.$groupArray["EndPointGroup"]["id"].'",
 				"staticGroupAssignment": true
